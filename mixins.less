@@ -1,0 +1,353 @@
+/*
+ *	In The Name Of ALLAH
+ *	mixins.less
+ */
+@import "vars";
+
+/*
+ * box-sizing
+ * Provides cross-browser "box-sizing" properties
+ */
+.box-sizing(@val){
+  -webkit-box-sizing: @val;
+  -moz-box-sizing:  @val;
+  box-sizing:  @val;
+};
+
+/*
+ * bg
+ * Makes the "background" property shorter
+ */
+.bg(@val){
+  background: @val;
+}
+
+/*
+ * bg-color
+ * Makes the "background-color" property shorter
+ */
+.bg-color(@color){
+  background-color: @color;
+};
+
+/*
+ * bg-size
+ * Makes the "background-size" property shorter
+ * Provides cross-browser "background-size" properties
+ */
+.bg-size(@val){
+  -webkit-background-size: @val;
+  background-size: @val;
+}
+
+/*
+ * bg-img
+ * Provides cross-browser "background-image" properties
+ */
+.bg-img(@val){
+  -webkit-background-image: @val;
+  -moz-background-image: @val;
+  -o-background-image: @val;
+  background-image: @val;
+}
+
+/*
+ * dir
+ * Makes the "direction" property shorter
+ */
+.dir(@val){
+  direction: @val;
+};
+
+/*
+ * border
+ * Makes the "border" properties shorter
+ */
+.border(@mode;@val) when (iskeyword(@mode)){
+  border-@{mode}: @val;
+};
+
+.border(@val){
+  border: @val;
+};
+
+/*
+ * border-radius
+ * Provides cross-browser "border-radius" properties
+ */
+.border-radius(@val: 0.2rem){
+  -webkit-border-radius: @val;
+  -moz-border-radius: @val;
+  border-radius: @val;
+}
+
+/*
+ * transition
+ * Provides cross-browser "transition" properties
+ */
+.transition(@val: inherit){
+  -webkit-transition: @val;
+  -moz-transition: @val;
+  -o-transition: @val;
+  transition: @val;
+}
+
+/*
+ * transform
+ * Provides cross-browser "transform" properties
+ */
+.transform(@val: inherit){
+  -webkit-transform: @val;
+  -moz-transform: @val;
+  -ms-transform: @val;
+  -o-transform: @val;
+  transform: @val;
+};
+
+/*
+ * box-shadow
+ * Provides cross-browser "box-shadow" properties
+ */
+.box-shadow(@val: 0px 0px 2px 1px rgba(0,0,0,0.2)){
+  -webkit-box-shadow: @val;
+  -moz-box-shadow: @val;
+  box-shadow: @val;
+}
+.box-shadow(@val) when (isstring(@val)) and (@val = "flat"){
+  -webkit-box-shadow: @bshadow-flat-0_050cm;
+  -moz-box-shadow: @bshadow-flat-0_050cm;
+  box-shadow: @bshadow-flat-0_050cm;
+}
+
+/*
+ * text-shadow
+ * Provides cross-browser "text-shadow" properties
+ */
+.text-shadow(@val){
+  text-shadow: @val;
+}
+.text-shadow(@val) when (isstring(@val)) and (@val = "flat"){
+  text-shadow: @tshadow-flat-0_050cm;
+}
+
+/*
+ * margin-v
+ * Makes the use of "margin-top" and "margin-bottom" properties together shorter
+ * [Not recommended for browsers]
+ */
+.margin-v(@val){
+  margin-top: @val;
+  margin-bottom: @val;
+}
+
+/*
+ * margin-h
+ * Makes the use of "margin-left" and "margin-right" properties together shorter
+ * [Not recommended for browsers]
+ */
+.margin-h(@val){
+  margin-left: @val;
+  margin-right: @val;
+}
+
+/*
+ * padding-v
+ * Makes the use of "padding-top" and "padding-bottom" properties together shorter
+ * [Not recommended for browsers]
+ */
+.padding-v(@val){
+  padding-top: @val;
+  padding-bottom: @val;
+}
+
+/*
+ * padding-h
+ * Makes the use of "padding-left" and "padding-right" properties together shorter
+ * [Not recommended for browsers]
+ */
+.padding-h(@val){
+  padding-left: @val;
+  padding-right: @val;
+}
+
+/*
+ * anim
+ * Provides cross-browser "animation" properties
+ */
+.anim(@val){
+  -webkit-animation: @val;
+  -o-animation: @val;
+  animation: @val;
+}
+
+/*
+ * anim-delay
+ * Provides cross-browser "animation-delay" properties
+ */
+.anim-delay(@val){
+  -webkit-animation-delay: @val;
+  -moz-animation-delay: @val;
+  -o-animation-delay: @val;
+  animation-delay: @val;
+}
+
+/*
+ * no-user-select
+ * Avoids object selecting by user
+ */
+.no-user-select(){
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
+
+/*
+ * perspective
+ * Provides cross-browser "perspective" properties
+ */
+.perspective(@val: 0){
+  -webkit-perspective: @val;
+  -moz-perspective: @val;
+  perspective: @val;
+}
+
+/*
+ * backface-visib
+ * Provides cross-browser "backface-visibility" properties
+ */
+.backface-visib(@val){
+  -webkit-backface-visibility: @val;
+  -moz-backface-visibility: @val;
+  backface-visibility: @val;
+}
+
+/*
+ * no-focus-outline
+ * Avoids from showing an outline after focusing on an input element
+ */
+.no-focus-outline(){
+  &:focus{
+    outline: 0 !important;
+  }
+  &::-moz-focus-inner{
+    border: 0;
+  }
+}
+
+/*
+ * text-stroke
+ * Makes something similar to text stroke by using text-shadow property
+ */
+.text-stroke(@fg-color; @stroke-color) when (iscolor(@fg-color)) and (iscolor(@stroke-color)){
+  color: @fg-color;
+  text-shadow:
+            -1px -1px 0 @stroke-color,
+            1px -1px 0 @stroke-color,
+          -1px 1px 0 @stroke-color,
+          1px 1px 0 @stroke-color;
+}
+.text-stroke(@stroke-color){
+  text-shadow:
+            -1px -1px 0 @stroke-color,
+            1px -1px 0 @stroke-color,
+          -1px 1px 0 @stroke-color,
+          1px 1px 0 @stroke-color;
+}
+
+/*
+ * word-break
+ * Does "word-break" in cross-browser way
+ */
+.word-break(){
+  white-space: pre-wrap;
+  word-break: break-all;
+  /* For Chrome and IE */
+  word-wrap: break-word;
+}
+
+/*
+ * gradient
+ * Makes cross browser gradient
+ * With supple arguments
+ */
+.gradient(@dir; @adjustment; @gradient-mode: linear){
+
+  .grad-dir(@dir);
+
+  .do-gradient(@TDir){
+    background: ~"-webkit-@{gradient-mode}-gradient(@{dir} ,@{adjustment})"; /* For Safari 5.1 to 6.0 */
+    background: ~"-o-@{gradient-mode}-gradient(@{dir} ,@{adjustment})"; /* For Opera 11.1 to 12.0 */
+    background: ~"-moz-@{gradient-mode}-gradient(@{dir} ,@{adjustment})"; /* For Firefox 3.6 to 15 */
+    background: ~"@{gradient-mode}-gradient(@{TDir} ,@{adjustment})"; /* Standard syntax */
+  }
+
+  //Linear Or Repeating Linear
+  .grad-dir(@dir) when (@dir = top) and ((@gradient-mode = linear) or (@gradient-mode = repeating-linear)){
+    .do-gradient(to bottom);
+  }
+  .grad-dir(@dir) when (@dir = bottom) and ((@gradient-mode = linear) or (@gradient-mode = repeating-linear)){
+    .do-gradient(to top);
+  }
+  .grad-dir(@dir) when (@dir = right) and ((@gradient-mode = linear) or (@gradient-mode = repeating-linear)){
+    .do-gradient(to left);
+  }
+  .grad-dir(@dir) when (@dir = left) and ((@gradient-mode = linear) or (@gradient-mode = repeating-linear)){
+    .do-gradient(to right);
+  }
+    //*******************
+  .grad-dir(@dir) when (@dir = ~"top left") and ((@gradient-mode = linear) or (@gradient-mode = repeating-linear)){
+    .do-gradient(to bottom right);
+  }
+  .grad-dir(@dir) when (@dir = ~"top right") and ((@gradient-mode = linear) or (@gradient-mode = repeating-linear)){
+    .do-gradient(to bottom left);
+  }
+  .grad-dir(@dir) when (@dir = ~"bottom left") and ((@gradient-mode = linear) or (@gradient-mode = repeating-linear)){
+    .do-gradient(to top right);
+  }
+  .grad-dir(@dir) when (@dir = ~"bottom right") and ((@gradient-mode = linear) or (@gradient-mode = repeating-linear)){
+    .do-gradient(to top left);
+  }
+  //Radial
+  .grad-dir(@dir) when (@dir = top) and (@gradient-mode = radial){
+    .do-gradient(at top);
+  }
+  .grad-dir(@dir) when (@dir = bottom) and (@gradient-mode = radial){
+    .do-gradient(at bottom);
+  }
+  .grad-dir(@dir) when (@dir = right) and (@gradient-mode = radial){
+    .do-gradient(at right);
+  }
+  .grad-dir(@dir) when (@dir = left) and (@gradient-mode = radial){
+    .do-gradient(at left);
+  }
+    //*******************
+  .grad-dir(@dir) when (@dir = ~"top right") and (@gradient-mode = radial){
+    .do-gradient(at top right);
+  }
+  .grad-dir(@dir) when (@dir = ~"top left") and (@gradient-mode = radial){
+    .do-gradient(at top left);
+  }
+  .grad-dir(@dir) when (@dir = ~"bottom right") and (@gradient-mode = radial){
+    .do-gradient(at bottom right);
+  }
+  .grad-dir(@dir) when (@dir = ~"bottom left") and (@gradient-mode = radial){
+    .do-gradient(at bottom left);
+  }
+  //NoMode
+  .grad-dir(@dir){
+    .do-gradient(@dir);
+  }
+}
+/*
+ * overflow-x & overflow-y
+ * Makes cross browser overflow property
+ */
+.overflow-x(@val: hidden){
+  overflow-x: @val;
+  -ms-overflow-x: @val;
+}
+.overflow-y(@val: hidden){
+  overflow-y: @val;
+  -ms-overflow-y: @val;
+}
